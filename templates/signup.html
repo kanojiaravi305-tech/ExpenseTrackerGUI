@@ -1,0 +1,52 @@
+<!-- ============================================================
+     Sign Up Page Template (signup.html)
+     Allows users to register a new account.
+     ============================================================ -->
+{% extends "base.html" %}
+
+{% block title %}Sign Up - Expense Tracker{% endblock %}
+
+{% block content %}
+
+    <!-- Centered Container for Signup Card -->
+    <div class="auth-wrapper">
+        <div class="card auth-card">
+            <h3>Create an Account</h3>
+            
+            <form action="{{ url_for('signup') }}" method="POST" id="signupForm">
+                
+                <!-- Username Input -->
+                <div class="form-group">
+                    <label for="username">Username <span class="required">*</span></label>
+                    <input type="text" id="username" name="username" 
+                           placeholder="Choose a username" required autocomplete="username">
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <label for="password">Password <span class="required">*</span></label>
+                    <input type="password" id="password" name="password" 
+                           placeholder="Create a password" required autocomplete="new-password">
+                </div>
+
+                <!-- Confirm Password Input -->
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password <span class="required">*</span></label>
+                    <input type="password" id="confirm_password" name="confirm_password" 
+                           placeholder="Repeat your password" required autocomplete="new-password">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-green" style="width: 100%;">Sign Up</button>
+                </div>
+            </form>
+
+            <!-- Link to Login Page -->
+            <p class="auth-redirect">
+                Already have an account? <a href="{{ url_for('login') }}">Log In here</a>.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

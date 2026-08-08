@@ -444,6 +444,13 @@ body {
         gap: 10px;
     }
 
+    .header-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
     .search-filter-form {
         flex-direction: column;
     }
@@ -469,4 +476,42 @@ body {
         flex-direction: column;
         gap: 4px;
     }
+}
+
+/* ============================================================
+   Authentication Layout (Login / Signup)
+   ============================================================ */
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.auth-card {
+    max-width: 450px;
+    width: 100%;
+    padding: 30px;
+}
+
+.auth-redirect {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.auth-redirect a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-redirect a:hover {
+    text-decoration: underline;
+}
+
+.user-greeting {
+    font-size: 14px;
+    color: #bdc3c7;
+    margin-right: 15px;
 }

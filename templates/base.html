@@ -23,7 +23,14 @@
                 <p class="subtitle">Manage Your Daily Expenses</p>
             </div>
             <nav class="header-nav">
-                <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+                {% if session.username %}
+                    <span class="user-greeting">Hello, <strong>{{ session.username }}</strong></span>
+                    <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+                    <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+                    <a href="{{ url_for('signup') }}" class="nav-link">Sign Up</a>
+                {% endif %}
             </nav>
         </div>
     </header>
