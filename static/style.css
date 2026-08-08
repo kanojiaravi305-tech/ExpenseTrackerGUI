@@ -1,0 +1,472 @@
+/* ============================================================
+   Expense Tracker - Stylesheet (style.css)
+   A clean, simple, and professional design suitable for
+   a college project. Light colors, standard fonts.
+   ============================================================ */
+
+/* ---- Reset & Base Styles ---- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f0f2f5;  /* Light gray background */
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ============================================================
+   Header / Navigation
+   ============================================================ */
+.site-header {
+    background-color: #2c3e50;  /* Dark blue-gray */
+    color: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title h1 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.header-title h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-title h1 a:hover {
+    text-decoration: underline;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #bdc3c7;
+    margin-top: 2px;
+}
+
+.header-nav .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+}
+
+.header-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* ============================================================
+   Main Container
+   ============================================================ */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 1;  /* Pushes footer to the bottom */
+}
+
+
+/* ============================================================
+   Page Heading
+   ============================================================ */
+.page-heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.page-heading h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.page-heading p {
+    font-size: 14px;
+    color: #777;
+}
+
+
+/* ============================================================
+   Summary Card (Total Expenses)
+   ============================================================ */
+.summary-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.summary-card h3 {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.total-amount {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+
+/* ============================================================
+   Card (Form and Table sections)
+   ============================================================ */
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+
+/* ============================================================
+   Form Styles
+   ============================================================ */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.required {
+    color: #e74c3c;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+    color: #333;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    background-color: #fff;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.form-buttons {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 9px 20px;
+    font-size: 14px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+/* Blue button (Search, general) */
+.btn-blue {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.btn-blue:hover {
+    background-color: #2980b9;
+}
+
+/* Green button (Add, Update) */
+.btn-green {
+    background-color: #27ae60;
+    color: #fff;
+}
+
+.btn-green:hover {
+    background-color: #219a52;
+}
+
+/* Clear/Cancel button */
+.btn-clear {
+    background-color: #95a5a6;
+    color: #fff;
+}
+
+.btn-clear:hover {
+    background-color: #7f8c8d;
+}
+
+/* Edit button (orange) */
+.btn-edit {
+    background-color: #e67e22;
+    color: #fff;
+}
+
+.btn-edit:hover {
+    background-color: #cf6d17;
+}
+
+/* Delete button (red) */
+.btn-delete {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+/* Small button variant (for table actions) */
+.btn-small {
+    padding: 5px 12px;
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   Flash Messages
+   ============================================================ */
+.flash-message {
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.flash-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+/* ============================================================
+   Search & Filter Section
+   ============================================================ */
+.search-filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+.search-group {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.search-group input[type="text"] {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-group input[type="text"]:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-size: 14px;
+    color: #555;
+    white-space: nowrap;
+}
+
+.filter-group select {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.clear-filters {
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+
+.clear-filters a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.clear-filters a:hover {
+    text-decoration: underline;
+}
+
+
+/* ============================================================
+   Expense Table
+   ============================================================ */
+.table-wrapper {
+    overflow-x: auto;  /* Horizontal scroll on small screens */
+}
+
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.expense-table thead {
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+.expense-table th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.expense-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.expense-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Action buttons inside table cells */
+.action-buttons {
+    white-space: nowrap;
+    display: flex;
+    gap: 6px;
+}
+
+/* No data message */
+.no-data-message {
+    text-align: center;
+    padding: 30px 10px;
+    color: #888;
+    font-size: 15px;
+}
+
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer {
+    background-color: #2c3e50;
+    color: #bdc3c7;
+    text-align: center;
+    padding: 14px 0;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+
+/* ============================================================
+   Responsive Design (Mobile Screens)
+   ============================================================ */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .search-filter-form {
+        flex-direction: column;
+    }
+
+    .search-group {
+        min-width: 100%;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .form-buttons .btn {
+        width: 100%;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 4px;
+    }
+}

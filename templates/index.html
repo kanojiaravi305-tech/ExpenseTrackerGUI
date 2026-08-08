@@ -1,0 +1,172 @@
+<!-- ============================================================
+     Home Page Template (index.html)
+     Shows: Summary card, Add Expense form, Search/Filter,
+            and Expense History table.
+     ============================================================ -->
+{% extends "base.html" %}
+
+{% block title %}Expense Tracker - Home{% endblock %}
+
+{% block content %}
+
+    <!-- ======== Page Heading ======== -->
+    <div class="page-heading">
+        <h2>Expense Tracker</h2>
+        <p>Manage and organize your daily spending</p>
+    </div>
+
+    <!-- ======== Total Expenses Summary Card ======== -->
+    <div class="summary-card">
+        <h3>Total Expenses</h3>
+        <p class="total-amount">&#8377; {{ "%.2f"|format(total_amount) }}</p>
+    </div>
+
+    <!-- ======== Add New Expense Form ======== -->
+    <div class="card">
+        <h3>Add New Expense</h3>
+        <form action="{{ url_for('add_expense') }}" method="POST" id="addExpenseForm">
+
+            <!-- Expense Title -->
+            <div class="form-group">
+                <label for="title">Expense Title <span class="required">*</span></label>
+                <input type="text" id="title" name="title"
+                       placeholder="Example: Lunch, Bus Ticket, Electricity Bill" required>
+            </div>
+
+            <!-- Amount -->
+            <div class="form-group">
+                <label for="amount">Amount (&#8377;) <span class="required">*</span></label>
+                <input type="number" id="amount" name="amount"
+                       placeholder="Example: 250" step="0.01" min="0.01" required>
+            </div>
+
+            <!-- Category Dropdown -->
+            <div class="form-group">
+                <label for="category">Category <span class="required">*</span></label>
+                <select id="category" name="category" required>
+                    <option value="">-- Select Category --</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat }}">{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Date Picker -->
+            <div class="form-group">
+                <label for="date">Date <span class="required">*</span></label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <!-- Description (optional) -->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="3"
+                          placeholder="Optional notes about this expense"></textarea>
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-green">Add Expense</button>
+                <button type="button" class="btn btn-clear" id="clearBtn">Clear</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ======== Expense History Section ======== -->
+    <div class="card">
+        <h3>Expense History</h3>
+
+        <!-- Search and Filter Controls -->
+        <form action="{{ url_for('index') }}" method="GET" class="search-filter-form">
+
+            <!-- Search by title or category -->
+            <div class="search-group">
+                <input type="text" name="search" placeholder="Search by title or category..."
+                       value="{{ search_query }}">
+                <button type="submit" class="btn btn-blue">Search</button>
+            </div>
+
+            <!-- Category filter dropdown -->
+            <div class="filter-group">
+                <label for="categoryFilter">Filter by Category:</label>
+                <select name="category" id="categoryFilter" onchange="this.form.submit()">
+                    <option value="All" {% if category_filter == 'All' or not category_filter %}selected{% endif %}>
+                        All Categories
+                    </option>
+                    {% for cat in categories %}
+                        <option value="{{ cat }}" {% if category_filter == cat %}selected{% endif %}>
+                            {{ cat }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+
+        <!-- Show a link to clear search/filter if any are active -->
+        {% if search_query or (category_filter and category_filter != 'All') %}
+            <p class="clear-filters">
+                <a href="{{ url_for('index') }}">Clear Search &amp; Filters</a>
+            </p>
+        {% endif %}
+
+        <!-- ======== Expense Table ======== -->
+        {% if expenses|length > 0 %}
+            <div class="table-wrapper">
+                <table class="expense-table">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Title</th>
+                            <th>Amount</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for expense in expenses %}
+                        <tr>
+                            <!-- Serial Number -->
+                            <td>{{ loop.index }}</td>
+
+                            <!-- Title -->
+                            <td>{{ expense.title }}</td>
+
+                            <!-- Amount formatted with Rupee symbol -->
+                            <td>&#8377; {{ "%.2f"|format(expense.amount) }}</td>
+
+                            <!-- Category -->
+                            <td>{{ expense.category }}</td>
+
+                            <!-- Date -->
+                            <td>{{ expense.date }}</td>
+
+                            <!-- Description (show dash if empty) -->
+                            <td>{{ expense.description if expense.description else "-" }}</td>
+
+                            <!-- Action Buttons -->
+                            <td class="action-buttons">
+                                <!-- Edit Button: navigates to the edit page -->
+                                <a href="{{ url_for('edit_expense', expense_id=expense._id) }}"
+                                   class="btn btn-edit btn-small">Edit</a>
+
+                                <!-- Delete Button: submits a POST form with confirmation -->
+                                <form action="{{ url_for('delete_expense', expense_id=expense._id) }}"
+                                      method="POST" class="delete-form" style="display:inline;">
+                                    <button type="submit" class="btn btn-delete btn-small"
+                                            onclick="return confirmDelete()">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <!-- Message when no expenses are found -->
+            <p class="no-data-message">No expenses found. Add your first expense using the form above.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

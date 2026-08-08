@@ -1,0 +1,73 @@
+<!-- ============================================================
+     Edit Expense Page Template (edit_expense.html)
+     Shows a form pre-filled with the selected expense's data
+     so the user can update it.
+     ============================================================ -->
+{% extends "base.html" %}
+
+{% block title %}Edit Expense - Expense Tracker{% endblock %}
+
+{% block content %}
+
+    <!-- ======== Page Heading ======== -->
+    <div class="page-heading">
+        <h2>Edit Expense</h2>
+        <p>Update the details of your expense below</p>
+    </div>
+
+    <!-- ======== Edit Expense Form ======== -->
+    <div class="card">
+        <form action="{{ url_for('update_expense', expense_id=expense._id) }}" method="POST" id="editExpenseForm">
+
+            <!-- Expense Title -->
+            <div class="form-group">
+                <label for="title">Expense Title <span class="required">*</span></label>
+                <input type="text" id="title" name="title"
+                       value="{{ expense.title }}"
+                       placeholder="Example: Lunch, Bus Ticket, Electricity Bill" required>
+            </div>
+
+            <!-- Amount -->
+            <div class="form-group">
+                <label for="amount">Amount (&#8377;) <span class="required">*</span></label>
+                <input type="number" id="amount" name="amount"
+                       value="{{ expense.amount }}"
+                       placeholder="Example: 250" step="0.01" min="0.01" required>
+            </div>
+
+            <!-- Category Dropdown (pre-selected) -->
+            <div class="form-group">
+                <label for="category">Category <span class="required">*</span></label>
+                <select id="category" name="category" required>
+                    <option value="">-- Select Category --</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat }}" {% if expense.category == cat %}selected{% endif %}>
+                            {{ cat }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Date Picker (pre-filled) -->
+            <div class="form-group">
+                <label for="date">Date <span class="required">*</span></label>
+                <input type="date" id="date" name="date"
+                       value="{{ expense.date }}" required>
+            </div>
+
+            <!-- Description (optional, pre-filled) -->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="3"
+                          placeholder="Optional notes about this expense">{{ expense.description }}</textarea>
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-green">Update Expense</button>
+                <a href="{{ url_for('index') }}" class="btn btn-clear">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
