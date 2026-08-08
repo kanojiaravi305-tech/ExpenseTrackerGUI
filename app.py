@@ -5,6 +5,7 @@
 # ============================================================
 
 import os
+import certifi
 from flask import Flask, render_template, request, redirect, url_for, flash
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -27,7 +28,9 @@ DATABASE_NAME = "expense_tracker_db"
 COLLECTION_NAME = "expenses"
 
 # Connect to MongoDB server
-client = MongoClient(MONGO_URI)
+# Use certifi to provide CA certificates (required for secure connections to MongoDB Atlas)
+ca = certifi.where()
+client = MongoClient(MONGO_URI, tlsCAFile=ca)
 
 # Select (or create) the database
 db = client[DATABASE_NAME]
