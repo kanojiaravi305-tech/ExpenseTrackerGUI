@@ -217,6 +217,7 @@ def add_expense():
     # Create the expense document linked to this user
     expense_document = {
         "user_id": ObjectId(session["user_id"]),
+        "username": session["username"],
         "title": title,
         "amount": amount,
         "category": category,
