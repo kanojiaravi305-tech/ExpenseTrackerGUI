@@ -11,7 +11,7 @@
 
     <!-- ======== Page Heading ======== -->
     <div class="page-heading">
-        <h2>Welcome, {{ session.username }}!</h2>
+        <h2>Expense Tracker</h2>
         <p>Manage and organize your daily spending</p>
     </div>
 
@@ -121,6 +121,7 @@
                             <th>Category</th>
                             <th>Date</th>
                             <th>Description</th>
+                            <th>Added By</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -144,6 +145,9 @@
 
                             <!-- Description (show dash if empty) -->
                             <td>{{ expense.description if expense.description else "-" }}</td>
+
+                            <!-- Added By -->
+                            <td>{{ expense.username if expense.username else "Unknown" }}</td>
 
                             <!-- Action Buttons -->
                             <td class="action-buttons">
