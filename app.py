@@ -4,6 +4,7 @@
 # Purpose: Demonstrates Flask + MongoDB (NoSQL) integration
 # ============================================================
 
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -18,8 +19,10 @@ app.secret_key = "expense_tracker_secret_key_ngd_project"  # Required for flash 
 
 # ------------------------------------------------------------
 # MongoDB Configuration
+# Reads from MONGODB_URI environment variable for deployment,
+# falls back to localhost for local development.
 # ------------------------------------------------------------
-MONGO_URI = "mongodb://localhost:27017/"
+MONGO_URI = os.environ.get("MONGODB_URI", "mongodb://localhost:27017/")
 DATABASE_NAME = "expense_tracker_db"
 COLLECTION_NAME = "expenses"
 
