@@ -1,6 +1,7 @@
 # Expense Tracker
 
 A simple web application to manage and track your daily expenses. Built as a college project for the **Next Generation Database (NGD)** subject to demonstrate how a web application connects with and stores data in a **MongoDB NoSQL database**.
+https://github.com/kanojiaravi305-tech/ExpenseTrackerGUI/issues/1#issuecomment-5297579076
 
 ---
 
